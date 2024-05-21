@@ -22,4 +22,12 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 | bulma | 1.0 | https://bulma.io/
 | chart.js | 4.4.2 | https://www.chartjs.org/ |
 
+## Screenshots
+
+![alt text](https://raw.githubusercontent.com/jmchaves/product-dashboard/main/images/table_1.png)
+![alt text](https://raw.githubusercontent.com/jmchaves/product-dashboard/main/images/charts_1.png)
+
+##Architecture
+![alt text](https://raw.githubusercontent.com/jmchaves/product-dashboard/main/images/frontend_Architecture_1.png)
+
 Enjoy!
