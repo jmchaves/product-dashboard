@@ -1,0 +1,103 @@
+<div class="container">
+  <form *ngIf="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="field">
+      <label class="label">Title</label>
+      <div class="control">
+        <input class="input" type="text" name="title" formControlName="title" placeholder="Title" maxlength="40">
+      </div>
+      <div *ngIf="title.invalid && (title.dirty || title.touched)">
+        <p class="help is-danger" *ngIf="title?.errors?.['required']">
+          This field is required
+        </p>
+      </div>
+    </div>
+    
+    <div class="field">
+      <label class="label">Description</label>
+      <div class="control">
+        <textarea class="textarea" name="description" formControlName="description" placeholder="Description" maxlength="130"></textarea>
+      </div>
+      <div *ngIf="description.invalid && (description.dirty || description.touched)">
+        <p class="help is-danger" *ngIf="description?.errors?.['required']">
+          This field is required
+        </p>
+      </div>
+    </div>
+    
+    <div class="field">
+      <label class="label">Price</label>
+      <div class="control">
+        <input class="input" name="price" formControlName="price" type="text" placeholder="Price">
+      </div>
+      <div *ngIf="price.invalid && (price.dirty || price.touched)">
+        <p class="help is-danger" *ngIf="price?.errors?.['required']">
+          This field is required
+        </p>
+        <p class="help is-danger" *ngIf="price?.errors?.['pattern']">
+          Only numerical input allowed, if decimal number is needed please use . to separate numbers. Max two decimal places.
+        </p>
+      </div>
+    </div>
+    
+    <div class="field">
+      <label class="label">Rating</label>
+      <div class="control">
+        <input class="input" name="rating" formControlName="rating" type="text" placeholder="Rating">
+      </div>
+      <div *ngIf="rating.invalid && (rating.dirty || rating.touched)">
+        <p class="help is-danger" *ngIf="rating?.errors?.['required']">
+          This field is required
+        </p>
+        <p class="help is-danger" *ngIf="rating?.errors?.['pattern']">
+          Numbers from 1 to 5. If decimal number is needed please use . to separate numbers. Max two decimal places.
+        </p>
+      </div>
+    </div>
+    
+    <div class="field">
+      <label class="label">Brand</label>
+      <div class="control">
+        <div class="select">
+          <select name="brand" formControlName="brand">
+            <option *ngFor="let brand of brands" [ngValue]="brand">
+              {{ brand }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div *ngIf="brand.invalid && (brand.dirty || brand.touched)">
+        <p class="help is-danger" *ngIf="brand?.errors?.['required']">
+          This field is required
+        </p>
+      </div>
+    </div>
+    
+    <div class="field">
+      <label class="label">Category</label>
+      <div class="control">
+        <div class="select">
+          <select name="category" formControlName="category">
+            <option *ngFor="let category of categories" [ngValue]="category">
+              {{ category }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div *ngIf="category.invalid && (category.dirty || category.touched)">
+        <p class="help is-danger" *ngIf="category?.errors?.['required']">
+          This field is required
+        </p>
+      </div>
+    </div>
+
+    <div class="notification is-warning is-light">      
+      This will not save the item in the database since the API does not support creation. However it will be added to the list.
+    </div>
+    
+    <div class="field is-grouped">
+      <div class="control">
+        <button class="button is-link" type="submit">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>

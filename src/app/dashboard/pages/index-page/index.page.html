@@ -1,0 +1,22 @@
+<div class="notification is-danger" *ngIf="errorFromServer">
+  There was an error in the server. Please make sure it is calling the API correctly or try refreshing the page.
+</div>
+<nav class="panel"  *ngIf="!errorFromServer">
+  <p class="panel-heading">Dashboard | Products</p>
+  <div class="panel-block">
+    <p class="control">
+      <input class="input" type="text" [(ngModel)]="searchPhrase" placeholder="Search by title" (keyup.enter)="searchByTitle()" />
+    </p>
+  </div>
+  <p class="panel-tabs">
+    <a [routerLink]="['/dashboard/table']" [ngClass]="{'is-active': activeTab === '/dashboard/table'}" class="is-active" routerLinkActive="is-active">Table</a>
+    <a [routerLink]="['/dashboard/charts']" [ngClass]="{'is-active': activeTab === '/dashboard/charts'}" routerLinkActive="is-active">Charts</a>
+    <a [routerLink]="['/dashboard/new/product']" (click)="cleanSearchAndRedirect('/dashboard/new/product')" [ngClass]="{'is-active': activeTab === '/dashboard/new/product'}" routerLinkActive="is-active">Add Product</a>
+  </p>
+  <div class="panel-block pt-5" *ngIf="products.length > 0">
+    <div class="notification is-success" *ngIf="newProductAdded">
+      Your product has been added to the list.
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+</nav>

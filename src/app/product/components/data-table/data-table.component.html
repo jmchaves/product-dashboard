@@ -1,0 +1,42 @@
+<table class="table is-striped">
+  <thead>
+      <tr>
+        <th class="header" (click)="sort('title')">Title <sort-icon [sortOrder]="sortOrder" *ngIf="sortBy === 'title'"></sort-icon></th>
+        <th class="header" (click)="sort('description')">Description <sort-icon [sortOrder]="sortOrder" *ngIf="sortBy === 'description'"></sort-icon></th>
+        <th class="header min-width-column" (click)="sort('price')">Price <sort-icon [sortOrder]="sortOrder" *ngIf="sortBy === 'price'"></sort-icon></th>
+        <th class="header is-hidden-mobile" (click)="sort('brand')">Brand <sort-icon [sortOrder]="sortOrder" *ngIf="sortBy === 'brand'"></sort-icon></th>
+        <th class="header is-hidden-mobile" (click)="sort('category')">Category <sort-icon [sortOrder]="sortOrder" *ngIf="sortBy === 'category'"></sort-icon></th>
+        <th class="header is-hidden-mobile min-width-column" (click)="sort('rating')">Rating <sort-icon [sortOrder]="sortOrder" *ngIf="sortBy === 'rating'"></sort-icon></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let prod of products | slice:(page * 10):(page * 10 + 10)">
+        <td>{{ prod.title }}</td>
+        <td>{{ prod.description }}</td>
+        <td>{{ prod.price | currency:'USD'}}</td>
+        <td class="is-hidden-mobile">{{ prod.brand }}</td>
+        <td class="is-hidden-mobile">{{ prod.category }}</td>
+        <td class="is-hidden-mobile">{{ prod.rating }}</td>
+      </tr>
+      <tr>
+  </tbody>
+</table>
+<nav class="pagination" role="navigation" aria-label="pagination" *ngIf="pageCount > 0">
+  <a class="pagination-previous" (click)="page = page - 1" [ngClass]="{'is-disabled': page < 1}"
+    >Previous</a
+  >
+  <a class="pagination-next" (click)="page = page + 1" [ngClass]="{'is-disabled': page >= 9 || pageCount - 1 === page}"
+  >Next page</a>
+  <ul class="pagination-list is-hidden-mobile">
+    <li *ngFor="let n of ' '.repeat(pageCount).split(''), let x = index">
+      <a
+       (click)="page = x"
+        [ngClass]="{'is-current': x === page}"
+        class="pagination-link is-current"
+        aria-label="Page"
+        aria-current="page"
+        >{{ x + 1 }}</a
+      >
+    </li>
+  </ul>
+</nav>

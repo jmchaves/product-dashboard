@@ -1,0 +1,11 @@
+.header {
+  cursor: pointer;
+}
+
+.is-disabled, .is-current {
+  pointer-events: none;
+}
+
+.min-width-column {
+  min-width: 95px;
+}
